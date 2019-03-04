@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @companies = Company.order(:name)
+    @companies = Company.order('id DESC')
   end
 
   def new

@@ -11,7 +11,7 @@ User.destroy_all
 30.times do |i|
   User.create(
     name: Faker::Name.name,
-    email: "usuario#{i+1}@gmail.com",
+    email: "user#{i + 1}@gmail.com",
     password: '123456'
   )
 end
@@ -32,3 +32,5 @@ companies = Company.all
     content: Faker::Lorem.paragraph
   )
 end
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
