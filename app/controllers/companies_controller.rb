@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  before_action :set_company, only: %i[edit update destroy]
+
   def index
     @companies = Company.all
   end
@@ -13,13 +15,34 @@ class CompaniesController < ApplicationController
     if @company.save
       respond_to :js
     else
-      redirect_to root_path 'There was an error, please try again.'
+      redirect_to root_path, alert: 'There was an error, please try again.'
     end
+  end
+
+  def edit
+    respond_to :js
+  end
+
+  def update
+    if @company.update(company_params)
+      respond_to :js
+    else
+      redirect_to root_path, alert: 'There was an error, please try again.'
+    end
+  end
+
+  def destroy
+    @company.destroy
+    respond_to :js
   end
 
   private
 
   def company_params
     params.require(:company).permit(:name)
+  end
+
+  def set_company
+    @company = Company.find(params[:id])
   end
 end
