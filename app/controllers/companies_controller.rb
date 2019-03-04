@@ -1,8 +1,9 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: :index
 
   def index
-    @companies = Company.all
+    @companies = Company.order(:name)
   end
 
   def new
@@ -21,7 +22,7 @@ class CompaniesController < ApplicationController
 
   def show
     @complaint = Complaint.new
-    @complaints = @company.complaints
+    @complaints = @company.complaints.order('created_at DESC')
     respond_to :js
   end
 
