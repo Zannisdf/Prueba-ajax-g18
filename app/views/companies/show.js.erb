@@ -1,0 +1,4 @@
+$('.modal-title').text('<%= @company.name %>');
+$('.modal-body').html('<%= j render 'shared/complaints_form', {complaint: @complaint, company: @company} %>');
+$('.modal-footer').html('<%= j render @complaints %>');
+$('.modal').modal('show');

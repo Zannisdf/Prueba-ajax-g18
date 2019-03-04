@@ -1,0 +1,7 @@
+<%= form_with(model: [company, complaint]) do |f| %>
+  <div class="form-group">
+    <%= f.label :content, 'Would you like to say something?' %>
+    <%= f.text_area :content, class: 'form-control', placeholder: 'Leave your complaint here...' %>
+  </div>
+  <%= f.submit 'Send', class: 'btn btn-primary btn-sm' %>
+<% end %>

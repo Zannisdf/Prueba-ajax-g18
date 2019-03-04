@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[edit update destroy]
+  before_action :set_company, only: %i[show edit update destroy]
 
   def index
     @companies = Company.all
@@ -17,6 +17,12 @@ class CompaniesController < ApplicationController
     else
       redirect_to root_path, alert: 'There was an error, please try again.'
     end
+  end
+
+  def show
+    @complaint = Complaint.new
+    @complaints = @company.complaints
+    respond_to :js
   end
 
   def edit
